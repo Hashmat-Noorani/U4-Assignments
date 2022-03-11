@@ -1,0 +1,324 @@
+ show collections
+users
+> db.user.insert({first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:26
+> db.user.insert({"first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25})
+WriteResult({ "nInserted" : 1 })
+> db.users.insertMany([{"first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25},{"first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25},{"first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25},{"first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25},{"first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25},{"first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25},{"first_name":"Hashmat","last_name":"wani","email":"hashmatwani@icloud.com","gender":"Male","ip_address":"123","age":25}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("622a0428c5937c73f8093c96"),
+                ObjectId("622a0428c5937c73f8093c97"),
+                ObjectId("622a0428c5937c73f8093c98"),
+                ObjectId("622a0428c5937c73f8093c99"),
+                ObjectId("622a0428c5937c73f8093c9a"),
+                ObjectId("622a0428c5937c73f8093c9b"),
+                ObjectId("622a0428c5937c73f8093c9c")
+        ]
+}
+> db.user.find()
+{ "_id" : ObjectId("622a0383c5937c73f8093c95"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25 }
+> db.user.find().pretty()
+{
+        "_id" : ObjectId("622a0383c5937c73f8093c95"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+> db.user.find({}).pretty()
+{
+        "_id" : ObjectId("622a0383c5937c73f8093c95"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+> db.user.find({"age":25})
+{ "_id" : ObjectId("622a0383c5937c73f8093c95"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25 }
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("6229ebb280579a87cca6cbb1"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 24
+}
+{
+        "_id" : ObjectId("6229ec7780579a87cca6cbb2"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c96"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c97"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c98"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c99"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c9a"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c9b"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c9c"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25
+}
+> db.users.findOne().pretty()
+uncaught exception: TypeError: db.users.findOne(...).pretty is not a function :
+@(shell):1:1
+> db.users.findOne()
+{
+        "_id" : ObjectId("6229ebb280579a87cca6cbb1"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 24
+}
+> db.users.update({"first_name":"Hashmat"},{$set:{"school":"masai"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.findOne()
+{
+        "_id" : ObjectId("6229ebb280579a87cca6cbb1"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 24,
+        "school" : "masai"
+}
+> db.users.update({"first_name":"Hashmat"},{$set:{"school":"masai"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.users.findOne()
+{
+        "_id" : ObjectId("6229ebb280579a87cca6cbb1"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 24,
+        "school" : "masai"
+}
+> db.users.update({"first_name":"Hashmat"},{$set:{"school":"masaI"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.findOne()
+{
+        "_id" : ObjectId("6229ebb280579a87cca6cbb1"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 24,
+        "school" : "masaI"
+}
+> db.users.update({"first_name":"Hashmat"},{$set:{"School":"masaI"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.findOne()
+{
+        "_id" : ObjectId("6229ebb280579a87cca6cbb1"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 24,
+        "school" : "masaI",
+        "School" : "masaI"
+}
+> db.users.update({"first_name":"Hashmat"},{$set:{"School":"masaI"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.users.uodateMany({"first_name":"Hashmat"},{$set:{"City":"Bangalore"}})
+uncaught exception: TypeError: db.users.uodateMany is not a function :
+@(shell):1:1
+> db.users.updateMany({"first_name":"Hashmat"},{$set:{"City":"Bangalore"}})
+{ "acknowledged" : true, "matchedCount" : 9, "modifiedCount" : 9 }
+> db.users.update({"first_name":"Hashmat"},{$unset:{"school":"masai"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.findOne()
+{
+        "_id" : ObjectId("6229ebb280579a87cca6cbb1"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 24,
+        "School" : "masaI",
+        "City" : "Bangalore"
+}
+> db.remove({"school":"masaI"})
+uncaught exception: TypeError: db.remove is not a function :
+@(shell):1:1
+> db.users.remove({"school":"masaI"})
+WriteResult({ "nRemoved" : 0 })
+> db.users.remove({"School":"masaI"})
+WriteResult({ "nRemoved" : 1 })
+> db.users.findOne()
+{
+        "_id" : ObjectId("6229ec7780579a87cca6cbb2"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+> db.users.find()
+{ "_id" : ObjectId("6229ec7780579a87cca6cbb2"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25, "City" : "Bangalore" }
+{ "_id" : ObjectId("622a0428c5937c73f8093c96"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25, "City" : "Bangalore" }
+{ "_id" : ObjectId("622a0428c5937c73f8093c97"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25, "City" : "Bangalore" }
+{ "_id" : ObjectId("622a0428c5937c73f8093c98"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25, "City" : "Bangalore" }
+{ "_id" : ObjectId("622a0428c5937c73f8093c99"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25, "City" : "Bangalore" }
+{ "_id" : ObjectId("622a0428c5937c73f8093c9a"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25, "City" : "Bangalore" }
+{ "_id" : ObjectId("622a0428c5937c73f8093c9b"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25, "City" : "Bangalore" }
+{ "_id" : ObjectId("622a0428c5937c73f8093c9c"), "first_name" : "Hashmat", "last_name" : "wani", "email" : "hashmatwani@icloud.com", "gender" : "Male", "ip_address" : "123", "age" : 25, "City" : "Bangalore" }
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("6229ec7780579a87cca6cbb2"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c96"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c97"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c98"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c99"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c9a"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c9b"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+{
+        "_id" : ObjectId("622a0428c5937c73f8093c9c"),
+        "first_name" : "Hashmat",
+        "last_name" : "wani",
+        "email" : "hashmatwani@icloud.com",
+        "gender" : "Male",
+        "ip_address" : "123",
+        "age" : 25,
+        "City" : "Bangalore"
+}
+> db.dropDatabase()
+{ "ok" : 1 }
+>
