@@ -1,0 +1,942 @@
+ use mock_data
+switched to db mock_data
+> db.movies.find({movie_name:{$eq:"Hunted City"}},{movie_name:1,production_year:1,_id:0})
+{ "movie_name" : "Hunted City", "production_year" : 2005 }
+> db.movies.find({movie_name:{$ne:"Hunted City"}},{movie_name:1,production_year:1,_id:0})
+{ "movie_name" : "Green Hornet, The", "production_year" : 2010 }
+{ "movie_name" : "Hardcover", "production_year" : 2006 }
+{ "movie_name" : "Murder by Numbers", "production_year" : 2011 }
+{ "movie_name" : "Blood on the Moon", "production_year" : 1997 }
+{ "movie_name" : "Brain That Wouldn't Die, The", "production_year" : 2008 }
+{ "movie_name" : "Inside (À l'intérieur)", "production_year" : 2008 }
+{ "movie_name" : "College", "production_year" : 2002 }
+{ "movie_name" : "As I Was Moving Ahead Occasionally I Saw Brief Glimpses of Beauty", "production_year" : 2007 }
+{ "movie_name" : "Much Ado About Nothing", "production_year" : 2007 }
+{ "movie_name" : "Monk and the Fish, The (Le moine et le poisson)", "production_year" : 2010 }
+{ "movie_name" : "Fortress 2", "production_year" : 1993 }
+{ "movie_name" : "Pirate, The", "production_year" : 2001 }
+{ "movie_name" : "They Came to Cordura", "production_year" : 1987 }
+{ "movie_name" : "Mr. Deeds Goes to Town", "production_year" : 2003 }
+{ "movie_name" : "Warlock: The Armageddon", "production_year" : 1995 }
+{ "movie_name" : "Cocaine Cowboys II: Hustlin' With the Godmother", "production_year" : 1996 }
+{ "movie_name" : "Zombie Lake (Lac des morts vivants, Le) (Zombies Lake) (Lake of the Living Dead, The)", "production_year" : 2004 }
+{ "movie_name" : "Kids of Survival", "production_year" : 1998 }
+{ "movie_name" : "Feeling Minnesota", "production_year" : 2007 }
+{ "movie_name" : "Inheritors, The (Siebtelbauern, Die)", "production_year" : 2006 }
+Type "it" for more
+> db.movies.find({$and:[{budget:{$gt:2000}}},{budget:{$gte:2000}}]})
+uncaught exception: SyntaxError: missing ] after element list :
+@(shell):1:41
+> db.movies.find({$and:[{budget:{$gt:2000}},{budget:{$gte:2000}}]})
+> db.movies.find({$and:[{budget:{$gt:100}},{budget:{$gte:100}}]})
+> db.movies.find({$and:[{budget:{$eq:100}},{budget:{$eq:100}}]})
+> db.movies.find({$and:[{budget:{$eq:"100"}},{budget:{$eq:"100"}}]})
+> db.movies.find({$and:[{budget:{$eq:"71"}},{budget:{$eq:"71"}}]})
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b8f"), "id" : 4, "movie_name" : "Blood on the Moon", "movie_genre" : "Action|Drama|Western", "production_year" : 1997, "budget" : "71" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9b"), "id" : 16, "movie_name" : "Warlock: The Armageddon", "movie_genre" : "Horror", "production_year" : 1995, "budget" : "71" }
+> db.movies.find({$and:[{budget:{$eq:"71"}},{budget:{$eq:"71"}}]},{production_year:1,movie_name:1,_id:0})
+{ "movie_name" : "Blood on the Moon", "production_year" : 1997 }
+{ "movie_name" : "Warlock: The Armageddon", "production_year" : 1995 }
+> db.movies.find({$and:[{production_year:{$gt:2000}},{budget:{$eq:"71"}}]},{production_year:1,movie_name:1,_id:0})
+> db.movies.find({$and:[{production_year:{$gt:1900}},{budget:{$eq:"71"}}]},{production_year:1,movie_name:1,_id:0})
+{ "movie_name" : "Blood on the Moon", "production_year" : 1997 }
+{ "movie_name" : "Warlock: The Armageddon", "production_year" : 1995 }
+> db.movies.find().sort({production_year:1},{movie_names:1}).pretty()
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bf9"),
+        "id" : 110,
+        "movie_name" : "Ungentlemanly Act, An",
+        "movie_genre" : "Action|Documentary|Drama|War",
+        "production_year" : 1957,
+        "budget" : "5180"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bbf"),
+        "id" : 52,
+        "movie_name" : "Payback",
+        "movie_genre" : "Action|Thriller",
+        "production_year" : 1961,
+        "budget" : "347"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c8b"),
+        "id" : 256,
+        "movie_name" : "Gnomeo & Juliet",
+        "movie_genre" : "Adventure|Animation|Children|Comedy|Fantasy|Romance",
+        "production_year" : 1963,
+        "budget" : "5094"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bcb"),
+        "id" : 64,
+        "movie_name" : "Tucker & Dale vs Evil",
+        "movie_genre" : "Comedy|Horror",
+        "production_year" : 1965,
+        "budget" : "7"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c1c"),
+        "id" : 145,
+        "movie_name" : "Genealogies of a Crime (Généalogies d'un crime)",
+        "movie_genre" : "Crime|Drama",
+        "production_year" : 1965,
+        "budget" : "91391"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d4f"),
+        "id" : 452,
+        "movie_name" : "Just Add Water",
+        "movie_genre" : "Comedy|Romance",
+        "production_year" : 1966,
+        "budget" : "93823"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d6a"),
+        "id" : 479,
+        "movie_name" : "House, The (A Casa)",
+        "movie_genre" : "Drama",
+        "production_year" : 1969,
+        "budget" : "786"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c63"),
+        "id" : 216,
+        "movie_name" : "Railroaded!",
+        "movie_genre" : "Film-Noir",
+        "production_year" : 1971,
+        "budget" : "81915"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c9f"),
+        "id" : 276,
+        "movie_name" : "Power and Terror: Noam Chomsky in Our Times",
+        "movie_genre" : "Documentary",
+        "production_year" : 1974,
+        "budget" : "9"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845cfa"),
+        "id" : 367,
+        "movie_name" : "George Carlin: It's Bad for Ya!",
+        "movie_genre" : "Comedy",
+        "production_year" : 1974,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845cff"),
+        "id" : 372,
+        "movie_name" : "First Name: Carmen (Prénom Carmen)",
+        "movie_genre" : "Crime|Drama|Romance",
+        "production_year" : 1981,
+        "budget" : "97"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bb2"),
+        "id" : 39,
+        "movie_name" : "Lady and the Duke, The (Anglaise et le duc, L')",
+        "movie_genre" : "Drama|Romance",
+        "production_year" : 1984,
+        "budget" : "4"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845be3"),
+        "id" : 88,
+        "movie_name" : "Evolution",
+        "movie_genre" : "Comedy|Sci-Fi",
+        "production_year" : 1984,
+        "budget" : "15"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c5f"),
+        "id" : 212,
+        "movie_name" : "Ronal the Barbarian",
+        "movie_genre" : "Adventure|Animation|Fantasy",
+        "production_year" : 1984,
+        "budget" : "1988"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c66"),
+        "id" : 219,
+        "movie_name" : "School Ties",
+        "movie_genre" : "Drama",
+        "production_year" : 1984,
+        "budget" : "51"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c7d"),
+        "id" : 242,
+        "movie_name" : "Hothead (Coup de tête)",
+        "movie_genre" : "Comedy|Drama",
+        "production_year" : 1984,
+        "budget" : "5"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c95"),
+        "id" : 266,
+        "movie_name" : "Big Town, The",
+        "movie_genre" : "Drama|Romance|Thriller",
+        "production_year" : 1984,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d5a"),
+        "id" : 463,
+        "movie_name" : "Freeway II: Confessions of a Trickbaby",
+        "movie_genre" : "Comedy|Crime|Drama|Thriller",
+        "production_year" : 1984,
+        "budget" : "0827"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c03"),
+        "id" : 120,
+        "movie_name" : "Mahogany",
+        "movie_genre" : "Drama|Romance",
+        "production_year" : 1985,
+        "budget" : "7508"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845caa"),
+        "id" : 287,
+        "movie_name" : "Driving Miss Daisy",
+        "movie_genre" : "Drama",
+        "production_year" : 1985,
+        "budget" : "13717"
+}
+Type "it" for more
+> db.movies.find().sort({production_year:1,movie_names:1}).pretty()
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bf9"),
+        "id" : 110,
+        "movie_name" : "Ungentlemanly Act, An",
+        "movie_genre" : "Action|Documentary|Drama|War",
+        "production_year" : 1957,
+        "budget" : "5180"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bbf"),
+        "id" : 52,
+        "movie_name" : "Payback",
+        "movie_genre" : "Action|Thriller",
+        "production_year" : 1961,
+        "budget" : "347"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c8b"),
+        "id" : 256,
+        "movie_name" : "Gnomeo & Juliet",
+        "movie_genre" : "Adventure|Animation|Children|Comedy|Fantasy|Romance",
+        "production_year" : 1963,
+        "budget" : "5094"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bcb"),
+        "id" : 64,
+        "movie_name" : "Tucker & Dale vs Evil",
+        "movie_genre" : "Comedy|Horror",
+        "production_year" : 1965,
+        "budget" : "7"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c1c"),
+        "id" : 145,
+        "movie_name" : "Genealogies of a Crime (Généalogies d'un crime)",
+        "movie_genre" : "Crime|Drama",
+        "production_year" : 1965,
+        "budget" : "91391"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d4f"),
+        "id" : 452,
+        "movie_name" : "Just Add Water",
+        "movie_genre" : "Comedy|Romance",
+        "production_year" : 1966,
+        "budget" : "93823"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d6a"),
+        "id" : 479,
+        "movie_name" : "House, The (A Casa)",
+        "movie_genre" : "Drama",
+        "production_year" : 1969,
+        "budget" : "786"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c63"),
+        "id" : 216,
+        "movie_name" : "Railroaded!",
+        "movie_genre" : "Film-Noir",
+        "production_year" : 1971,
+        "budget" : "81915"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c9f"),
+        "id" : 276,
+        "movie_name" : "Power and Terror: Noam Chomsky in Our Times",
+        "movie_genre" : "Documentary",
+        "production_year" : 1974,
+        "budget" : "9"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845cfa"),
+        "id" : 367,
+        "movie_name" : "George Carlin: It's Bad for Ya!",
+        "movie_genre" : "Comedy",
+        "production_year" : 1974,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845cff"),
+        "id" : 372,
+        "movie_name" : "First Name: Carmen (Prénom Carmen)",
+        "movie_genre" : "Crime|Drama|Romance",
+        "production_year" : 1981,
+        "budget" : "97"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bb2"),
+        "id" : 39,
+        "movie_name" : "Lady and the Duke, The (Anglaise et le duc, L')",
+        "movie_genre" : "Drama|Romance",
+        "production_year" : 1984,
+        "budget" : "4"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845be3"),
+        "id" : 88,
+        "movie_name" : "Evolution",
+        "movie_genre" : "Comedy|Sci-Fi",
+        "production_year" : 1984,
+        "budget" : "15"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c5f"),
+        "id" : 212,
+        "movie_name" : "Ronal the Barbarian",
+        "movie_genre" : "Adventure|Animation|Fantasy",
+        "production_year" : 1984,
+        "budget" : "1988"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c66"),
+        "id" : 219,
+        "movie_name" : "School Ties",
+        "movie_genre" : "Drama",
+        "production_year" : 1984,
+        "budget" : "51"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c7d"),
+        "id" : 242,
+        "movie_name" : "Hothead (Coup de tête)",
+        "movie_genre" : "Comedy|Drama",
+        "production_year" : 1984,
+        "budget" : "5"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c95"),
+        "id" : 266,
+        "movie_name" : "Big Town, The",
+        "movie_genre" : "Drama|Romance|Thriller",
+        "production_year" : 1984,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d5a"),
+        "id" : 463,
+        "movie_name" : "Freeway II: Confessions of a Trickbaby",
+        "movie_genre" : "Comedy|Crime|Drama|Thriller",
+        "production_year" : 1984,
+        "budget" : "0827"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c03"),
+        "id" : 120,
+        "movie_name" : "Mahogany",
+        "movie_genre" : "Drama|Romance",
+        "production_year" : 1985,
+        "budget" : "7508"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845caa"),
+        "id" : 287,
+        "movie_name" : "Driving Miss Daisy",
+        "movie_genre" : "Drama",
+        "production_year" : 1985,
+        "budget" : "13717"
+}
+Type "it" for more
+> db.movies.find().sort({production_year:1,movie_name:1}).pretty()
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bf9"),
+        "id" : 110,
+        "movie_name" : "Ungentlemanly Act, An",
+        "movie_genre" : "Action|Documentary|Drama|War",
+        "production_year" : 1957,
+        "budget" : "5180"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bbf"),
+        "id" : 52,
+        "movie_name" : "Payback",
+        "movie_genre" : "Action|Thriller",
+        "production_year" : 1961,
+        "budget" : "347"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c8b"),
+        "id" : 256,
+        "movie_name" : "Gnomeo & Juliet",
+        "movie_genre" : "Adventure|Animation|Children|Comedy|Fantasy|Romance",
+        "production_year" : 1963,
+        "budget" : "5094"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c1c"),
+        "id" : 145,
+        "movie_name" : "Genealogies of a Crime (Généalogies d'un crime)",
+        "movie_genre" : "Crime|Drama",
+        "production_year" : 1965,
+        "budget" : "91391"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bcb"),
+        "id" : 64,
+        "movie_name" : "Tucker & Dale vs Evil",
+        "movie_genre" : "Comedy|Horror",
+        "production_year" : 1965,
+        "budget" : "7"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d4f"),
+        "id" : 452,
+        "movie_name" : "Just Add Water",
+        "movie_genre" : "Comedy|Romance",
+        "production_year" : 1966,
+        "budget" : "93823"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d6a"),
+        "id" : 479,
+        "movie_name" : "House, The (A Casa)",
+        "movie_genre" : "Drama",
+        "production_year" : 1969,
+        "budget" : "786"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c63"),
+        "id" : 216,
+        "movie_name" : "Railroaded!",
+        "movie_genre" : "Film-Noir",
+        "production_year" : 1971,
+        "budget" : "81915"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845cfa"),
+        "id" : 367,
+        "movie_name" : "George Carlin: It's Bad for Ya!",
+        "movie_genre" : "Comedy",
+        "production_year" : 1974,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c9f"),
+        "id" : 276,
+        "movie_name" : "Power and Terror: Noam Chomsky in Our Times",
+        "movie_genre" : "Documentary",
+        "production_year" : 1974,
+        "budget" : "9"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845cff"),
+        "id" : 372,
+        "movie_name" : "First Name: Carmen (Prénom Carmen)",
+        "movie_genre" : "Crime|Drama|Romance",
+        "production_year" : 1981,
+        "budget" : "97"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c95"),
+        "id" : 266,
+        "movie_name" : "Big Town, The",
+        "movie_genre" : "Drama|Romance|Thriller",
+        "production_year" : 1984,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845be3"),
+        "id" : 88,
+        "movie_name" : "Evolution",
+        "movie_genre" : "Comedy|Sci-Fi",
+        "production_year" : 1984,
+        "budget" : "15"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d5a"),
+        "id" : 463,
+        "movie_name" : "Freeway II: Confessions of a Trickbaby",
+        "movie_genre" : "Comedy|Crime|Drama|Thriller",
+        "production_year" : 1984,
+        "budget" : "0827"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c7d"),
+        "id" : 242,
+        "movie_name" : "Hothead (Coup de tête)",
+        "movie_genre" : "Comedy|Drama",
+        "production_year" : 1984,
+        "budget" : "5"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bb2"),
+        "id" : 39,
+        "movie_name" : "Lady and the Duke, The (Anglaise et le duc, L')",
+        "movie_genre" : "Drama|Romance",
+        "production_year" : 1984,
+        "budget" : "4"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c5f"),
+        "id" : 212,
+        "movie_name" : "Ronal the Barbarian",
+        "movie_genre" : "Adventure|Animation|Fantasy",
+        "production_year" : 1984,
+        "budget" : "1988"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845c66"),
+        "id" : 219,
+        "movie_name" : "School Ties",
+        "movie_genre" : "Drama",
+        "production_year" : 1984,
+        "budget" : "51"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845d56"),
+        "id" : 459,
+        "movie_name" : "Book of Fate, The (Kohtalon kirja)",
+        "movie_genre" : "Action|Horror|Sci-Fi|War|Western",
+        "production_year" : 1985,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845caa"),
+        "id" : 287,
+        "movie_name" : "Driving Miss Daisy",
+        "movie_genre" : "Drama",
+        "production_year" : 1985,
+        "budget" : "13717"
+}
+Type "it" for more
+> db.movies.find().skip(10)
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b96"), "id" : 11, "movie_name" : "Fortress 2", "movie_genre" : "Action|Sci-Fi", "production_year" : 1993, "budget" : "203" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b97"), "id" : 12, "movie_name" : "Hunted City", "movie_genre" : "(no genres listed)", "production_year" : 2005, "budget" : "22" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b98"), "id" : 13, "movie_name" : "Pirate, The", "movie_genre" : "Adventure|Comedy|Musical|Romance", "production_year" : 2001, "budget" : "155" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b99"), "id" : 14, "movie_name" : "They Came to Cordura", "movie_genre" : "Western", "production_year" : 1987, "budget" : "0" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9a"), "id" : 15, "movie_name" : "Mr. Deeds Goes to Town", "movie_genre" : "Comedy|Romance", "production_year" : 2003, "budget" : "2561" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9b"), "id" : 16, "movie_name" : "Warlock: The Armageddon", "movie_genre" : "Horror", "production_year" : 1995, "budget" : "71" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9c"), "id" : 17, "movie_name" : "Cocaine Cowboys II: Hustlin' With the Godmother", "movie_genre" : "Crime|Documentary", "production_year" : 1996, "budget" : "05404" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9d"), "id" : 18, "movie_name" : "Zombie Lake (Lac des morts vivants, Le) (Zombies Lake) (Lake of the Living Dead, The)", "movie_genre" : "Horror", "production_year" : 2004, "budget" : "95057" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9e"), "id" : 19, "movie_name" : "Kids of Survival", "movie_genre" : "Documentary", "production_year" : 1998, "budget" : "26063" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9f"), "id" : 20, "movie_name" : "Feeling Minnesota", "movie_genre" : "Drama|Romance", "production_year" : 2007, "budget" : "6722" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba0"), "id" : 21, "movie_name" : "Inheritors, The (Siebtelbauern, Die)", "movie_genre" : "Drama|Mystery", "production_year" : 2006, "budget" : "1" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba1"), "id" : 22, "movie_name" : "Wrong Turn 3: Left for Dead", "movie_genre" : "Horror", "production_year" : 2010, "budget" : "5" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba2"), "id" : 23, "movie_name" : "8 1/2 (8½)", "movie_genre" : "Drama|Fantasy", "production_year" : 2006, "budget" : "848" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba3"), "id" : 24, "movie_name" : "Almanya - Welcome to Germany (Almanya - Willkommen in Deutschland)", "movie_genre" : "Comedy|Drama", "production_year" : 2001, "budget" : "58" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba4"), "id" : 25, "movie_name" : "Phoebe in Wonderland", "movie_genre" : "Drama|Fantasy", "production_year" : 2006, "budget" : "8" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba5"), "id" : 26, "movie_name" : "Commandments", "movie_genre" : "Romance", "production_year" : 2001, "budget" : "9227" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba6"), "id" : 27, "movie_name" : "Mickey, Donald, Goofy: The Three Musketeers", "movie_genre" : "Adventure|Animation|Children|Comedy", "production_year" : 2007, "budget" : "6" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba7"), "id" : 28, "movie_name" : "Going Ape!", "movie_genre" : "Comedy", "production_year" : 1998, "budget" : "4415" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba8"), "id" : 29, "movie_name" : "They Call Us Misfits (Dom kallar oss mods)", "movie_genre" : "Documentary", "production_year" : 1994, "budget" : "3451" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba9"), "id" : 30, "movie_name" : "Fun", "movie_genre" : "Crime|Drama", "production_year" : 1987, "budget" : "971" }
+Type "it" for more
+> db.movies.find().skip(10).limit(5)
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b96"), "id" : 11, "movie_name" : "Fortress 2", "movie_genre" : "Action|Sci-Fi", "production_year" : 1993, "budget" : "203" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b97"), "id" : 12, "movie_name" : "Hunted City", "movie_genre" : "(no genres listed)", "production_year" : 2005, "budget" : "22" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b98"), "id" : 13, "movie_name" : "Pirate, The", "movie_genre" : "Adventure|Comedy|Musical|Romance", "production_year" : 2001, "budget" : "155" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b99"), "id" : 14, "movie_name" : "They Came to Cordura", "movie_genre" : "Western", "production_year" : 1987, "budget" : "0" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9a"), "id" : 15, "movie_name" : "Mr. Deeds Goes to Town", "movie_genre" : "Comedy|Romance", "production_year" : 2003, "budget" : "2561" }
+> db.movies.find().skip(10).limit(5).pretty()
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b96"),
+        "id" : 11,
+        "movie_name" : "Fortress 2",
+        "movie_genre" : "Action|Sci-Fi",
+        "production_year" : 1993,
+        "budget" : "203"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b97"),
+        "id" : 12,
+        "movie_name" : "Hunted City",
+        "movie_genre" : "(no genres listed)",
+        "production_year" : 2005,
+        "budget" : "22"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b98"),
+        "id" : 13,
+        "movie_name" : "Pirate, The",
+        "movie_genre" : "Adventure|Comedy|Musical|Romance",
+        "production_year" : 2001,
+        "budget" : "155"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b99"),
+        "id" : 14,
+        "movie_name" : "They Came to Cordura",
+        "movie_genre" : "Western",
+        "production_year" : 1987,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b9a"),
+        "id" : 15,
+        "movie_name" : "Mr. Deeds Goes to Town",
+        "movie_genre" : "Comedy|Romance",
+        "production_year" : 2003,
+        "budget" : "2561"
+}
+> db.movies.count()
+500
+> db.movies.remove{_id:"ObjectId("622b5ee0256f32eb2e845b9a")"}
+uncaught exception: SyntaxError: unexpected token: '{' :
+@(shell):1:16
+> db.movies.remove({_id:"ObjectId("622b5ee0256f32eb2e845b9a")"})
+uncaught exception: SyntaxError: identifier starts immediately after numeric literal :
+@(shell):1:33
+> db.movies.remove({_id:ObjectId("622b5ee0256f32eb2e845b9a")})
+WriteResult({ "nRemoved" : 1 })
+> db.movies.count()
+499
+> db.movies.find({production_year:2003}).count()
+27
+> db.movies.remove({production_year:2003},{justOne:true})
+WriteResult({ "nRemoved" : 1 })
+> db.movies.find().skip(10).pretty()
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b96"),
+        "id" : 11,
+        "movie_name" : "Fortress 2",
+        "movie_genre" : "Action|Sci-Fi",
+        "production_year" : 1993,
+        "budget" : "203"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b97"),
+        "id" : 12,
+        "movie_name" : "Hunted City",
+        "movie_genre" : "(no genres listed)",
+        "production_year" : 2005,
+        "budget" : "22"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b98"),
+        "id" : 13,
+        "movie_name" : "Pirate, The",
+        "movie_genre" : "Adventure|Comedy|Musical|Romance",
+        "production_year" : 2001,
+        "budget" : "155"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b99"),
+        "id" : 14,
+        "movie_name" : "They Came to Cordura",
+        "movie_genre" : "Western",
+        "production_year" : 1987,
+        "budget" : "0"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b9b"),
+        "id" : 16,
+        "movie_name" : "Warlock: The Armageddon",
+        "movie_genre" : "Horror",
+        "production_year" : 1995,
+        "budget" : "71"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b9c"),
+        "id" : 17,
+        "movie_name" : "Cocaine Cowboys II: Hustlin' With the Godmother",
+        "movie_genre" : "Crime|Documentary",
+        "production_year" : 1996,
+        "budget" : "05404"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b9d"),
+        "id" : 18,
+        "movie_name" : "Zombie Lake (Lac des morts vivants, Le) (Zombies Lake) (Lake of the Living Dead, The)",
+        "movie_genre" : "Horror",
+        "production_year" : 2004,
+        "budget" : "95057"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b9e"),
+        "id" : 19,
+        "movie_name" : "Kids of Survival",
+        "movie_genre" : "Documentary",
+        "production_year" : 1998,
+        "budget" : "26063"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b9f"),
+        "id" : 20,
+        "movie_name" : "Feeling Minnesota",
+        "movie_genre" : "Drama|Romance",
+        "production_year" : 2007,
+        "budget" : "6722"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba0"),
+        "id" : 21,
+        "movie_name" : "Inheritors, The (Siebtelbauern, Die)",
+        "movie_genre" : "Drama|Mystery",
+        "production_year" : 2006,
+        "budget" : "1"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba1"),
+        "id" : 22,
+        "movie_name" : "Wrong Turn 3: Left for Dead",
+        "movie_genre" : "Horror",
+        "production_year" : 2010,
+        "budget" : "5"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba2"),
+        "id" : 23,
+        "movie_name" : "8 1/2 (8½)",
+        "movie_genre" : "Drama|Fantasy",
+        "production_year" : 2006,
+        "budget" : "848"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba3"),
+        "id" : 24,
+        "movie_name" : "Almanya - Welcome to Germany (Almanya - Willkommen in Deutschland)",
+        "movie_genre" : "Comedy|Drama",
+        "production_year" : 2001,
+        "budget" : "58"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba4"),
+        "id" : 25,
+        "movie_name" : "Phoebe in Wonderland",
+        "movie_genre" : "Drama|Fantasy",
+        "production_year" : 2006,
+        "budget" : "8"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba5"),
+        "id" : 26,
+        "movie_name" : "Commandments",
+        "movie_genre" : "Romance",
+        "production_year" : 2001,
+        "budget" : "9227"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba6"),
+        "id" : 27,
+        "movie_name" : "Mickey, Donald, Goofy: The Three Musketeers",
+        "movie_genre" : "Adventure|Animation|Children|Comedy",
+        "production_year" : 2007,
+        "budget" : "6"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba7"),
+        "id" : 28,
+        "movie_name" : "Going Ape!",
+        "movie_genre" : "Comedy",
+        "production_year" : 1998,
+        "budget" : "4415"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba8"),
+        "id" : 29,
+        "movie_name" : "They Call Us Misfits (Dom kallar oss mods)",
+        "movie_genre" : "Documentary",
+        "production_year" : 1994,
+        "budget" : "3451"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845ba9"),
+        "id" : 30,
+        "movie_name" : "Fun",
+        "movie_genre" : "Crime|Drama",
+        "production_year" : 1987,
+        "budget" : "971"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845bab"),
+        "id" : 32,
+        "movie_name" : "Mass Appeal",
+        "movie_genre" : "Drama",
+        "production_year" : 1997,
+        "budget" : "565"
+}
+Type "it" for more
+> db.movies.find().skip(10).update({},{$unset:{movie_genre}})pretty()
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:59
+> db.movies.find().skip(10).update({},{$unset:{movie_genre}}).pretty()
+uncaught exception: ReferenceError: movie_genre is not defined :
+@(shell):1:46
+> db.movies.find().skip(10).update({},{$unset:{"movie_genre"}}).pretty()
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:58
+> db.movies.update({},{$unset:{"movie_genre"}}).pretty()
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:42
+> db.movies.update({},{$unset:{"movie_genre:1"}}).pretty()
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:44
+> db.movies.update({},{$unset:{"movie_genre":1}}).pretty()
+uncaught exception: TypeError: db.movies.update(...).pretty is not a function :
+@(shell):1:1
+> db.movies.update({},{$unset:{"movie_genre":1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.movies.find()
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b8c"), "id" : 1, "movie_name" : "Green Hornet, The", "production_year" : 2010, "budget" : "782" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b8d"), "id" : 2, "movie_name" : "Hardcover", "movie_genre" : "Comedy", "production_year" : 2006, "budget" : "68" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b8e"), "id" : 3, "movie_name" : "Murder by Numbers", "movie_genre" : "Crime|Thriller", "production_year" : 2011, "budget" : "09606" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b8f"), "id" : 4, "movie_name" : "Blood on the Moon", "movie_genre" : "Action|Drama|Western", "production_year" : 1997, "budget" : "71" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b90"), "id" : 5, "movie_name" : "Brain That Wouldn't Die, The", "movie_genre" : "Horror|Sci-Fi", "production_year" : 2008, "budget" : "1812" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b91"), "id" : 6, "movie_name" : "Inside (À l'intérieur)", "movie_genre" : "Horror|Thriller", "production_year" : 2008, "budget" : "69" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b92"), "id" : 7, "movie_name" : "College", "movie_genre" : "Comedy", "production_year" : 2002, "budget" : "7429" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b93"), "id" : 8, "movie_name" : "As I Was Moving Ahead Occasionally I Saw Brief Glimpses of Beauty", "movie_genre" : "Documentary", "production_year" : 2007, "budget" : "241" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b94"), "id" : 9, "movie_name" : "Much Ado About Nothing", "movie_genre" : "Comedy|Drama|Romance", "production_year" : 2007, "budget" : "6154" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b95"), "id" : 10, "movie_name" : "Monk and the Fish, The (Le moine et le poisson)", "movie_genre" : "Animation|Musical", "production_year" : 2010, "budget" : "79" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b96"), "id" : 11, "movie_name" : "Fortress 2", "movie_genre" : "Action|Sci-Fi", "production_year" : 1993, "budget" : "203" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b97"), "id" : 12, "movie_name" : "Hunted City", "movie_genre" : "(no genres listed)", "production_year" : 2005, "budget" : "22" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b98"), "id" : 13, "movie_name" : "Pirate, The", "movie_genre" : "Adventure|Comedy|Musical|Romance", "production_year" : 2001, "budget" : "155" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b99"), "id" : 14, "movie_name" : "They Came to Cordura", "movie_genre" : "Western", "production_year" : 1987, "budget" : "0" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9b"), "id" : 16, "movie_name" : "Warlock: The Armageddon", "movie_genre" : "Horror", "production_year" : 1995, "budget" : "71" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9c"), "id" : 17, "movie_name" : "Cocaine Cowboys II: Hustlin' With the Godmother", "movie_genre" : "Crime|Documentary", "production_year" : 1996, "budget" : "05404" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9d"), "id" : 18, "movie_name" : "Zombie Lake (Lac des morts vivants, Le) (Zombies Lake) (Lake of the Living Dead, The)", "movie_genre" : "Horror", "production_year" : 2004, "budget" : "95057" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9e"), "id" : 19, "movie_name" : "Kids of Survival", "movie_genre" : "Documentary", "production_year" : 1998, "budget" : "26063" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845b9f"), "id" : 20, "movie_name" : "Feeling Minnesota", "movie_genre" : "Drama|Romance", "production_year" : 2007, "budget" : "6722" }
+{ "_id" : ObjectId("622b5ee0256f32eb2e845ba0"), "id" : 21, "movie_name" : "Inheritors, The (Siebtelbauern, Die)", "movie_genre" : "Drama|Mystery", "production_year" : 2006, "budget" : "1" }
+Type "it" for more
+> db.movies.find().limit(5).pretty()
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8c"),
+        "id" : 1,
+        "movie_name" : "Green Hornet, The",
+        "production_year" : 2010,
+        "budget" : "782"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8d"),
+        "id" : 2,
+        "movie_name" : "Hardcover",
+        "movie_genre" : "Comedy",
+        "production_year" : 2006,
+        "budget" : "68"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8e"),
+        "id" : 3,
+        "movie_name" : "Murder by Numbers",
+        "movie_genre" : "Crime|Thriller",
+        "production_year" : 2011,
+        "budget" : "09606"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8f"),
+        "id" : 4,
+        "movie_name" : "Blood on the Moon",
+        "movie_genre" : "Action|Drama|Western",
+        "production_year" : 1997,
+        "budget" : "71"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b90"),
+        "id" : 5,
+        "movie_name" : "Brain That Wouldn't Die, The",
+        "movie_genre" : "Horror|Sci-Fi",
+        "production_year" : 2008,
+        "budget" : "1812"
+}
+> db.movies.update({id:{$lte:10}},{$unset:{"movie_genre":1}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 0 })
+> db.movies.find().limit(5).pretty()
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8c"),
+        "id" : 1,
+        "movie_name" : "Green Hornet, The",
+        "production_year" : 2010,
+        "budget" : "782"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8d"),
+        "id" : 2,
+        "movie_name" : "Hardcover",
+        "movie_genre" : "Comedy",
+        "production_year" : 2006,
+        "budget" : "68"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8e"),
+        "id" : 3,
+        "movie_name" : "Murder by Numbers",
+        "movie_genre" : "Crime|Thriller",
+        "production_year" : 2011,
+        "budget" : "09606"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8f"),
+        "id" : 4,
+        "movie_name" : "Blood on the Moon",
+        "movie_genre" : "Action|Drama|Western",
+        "production_year" : 1997,
+        "budget" : "71"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b90"),
+        "id" : 5,
+        "movie_name" : "Brain That Wouldn't Die, The",
+        "movie_genre" : "Horror|Sci-Fi",
+        "production_year" : 2008,
+        "budget" : "1812"
+}
+> db.movies.update({id:{$lte:10}},{$unset:{"movie_genre"}})
+uncaught exception: SyntaxError: missing : after property id :
+@(shell):1:54
+> db.movies.updateMany({id:{$lte:10}},{$unset:{"movie_genre":1}})
+{ "acknowledged" : true, "matchedCount" : 10, "modifiedCount" : 9 }
+> db.movies.find().limit(5).pretty()
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8c"),
+        "id" : 1,
+        "movie_name" : "Green Hornet, The",
+        "production_year" : 2010,
+        "budget" : "782"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8d"),
+        "id" : 2,
+        "movie_name" : "Hardcover",
+        "production_year" : 2006,
+        "budget" : "68"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8e"),
+        "id" : 3,
+        "movie_name" : "Murder by Numbers",
+        "production_year" : 2011,
+        "budget" : "09606"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b8f"),
+        "id" : 4,
+        "movie_name" : "Blood on the Moon",
+        "production_year" : 1997,
+        "budget" : "71"
+}
+{
+        "_id" : ObjectId("622b5ee0256f32eb2e845b90"),
+        "id" : 5,
+        "movie_name" : "Brain That Wouldn't Die, The",
+        "production_year" : 2008,
+        "budget" : "1812"
+}
+>
