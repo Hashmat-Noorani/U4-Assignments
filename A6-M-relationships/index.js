@@ -34,9 +34,17 @@ const Author = mongoose.model("author", authorSchema);
 
 const bookSchema = new mongoose.Schema(
   {
-    section_id: { type: String, required: true },
+    section_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "section",
+      required: true,
+    },
     book_name: { type: String, required: true },
-    author_id: { type: String, required: true },
+    author_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "author",
+      required: true,
+    },
   },
   {
     versionKey: false,
@@ -110,7 +118,14 @@ app.post("/authors", async (req, res) => {
     return res.status(500).send({ error: err.message });
   }
 });
-
+app.get("/books", async (req, res) => {
+  try {
+    const books = await Book.find().populate("author_id").lean().exec();
+    res.status(200).send(books);
+  } catch (err) {
+    res.status(500).send({ error: err.message });
+  }
+});
 app.get("/books/:author", async (req, res) => {
   try {
     const books = await Book.find({ author_id: req.params.author })
